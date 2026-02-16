@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Janker AI</title>
+  <title>Jankler AI</title>
   <style>
     body {
       background-color: black;
-      color: lime;
+      color: purple;
       font-family: monospace;
       text-align: center;
     }
@@ -15,7 +15,7 @@
       max-width: 500px;
       height: 400px;
       margin: 20px auto;
-      border: 2px solid lime;
+      border: 2px solid purple;
       overflow-y: auto;
       padding: 10px;
     }
@@ -24,13 +24,13 @@
       width: 70%;
       padding: 5px;
       background: black;
-      color: lime;
-      border: 1px solid lime;
+      color: purple;
+      border: 1px solid purple;
     }
 
     button {
       padding: 5px;
-      background: lime;
+      background: purple;
       border: none;
       cursor: pointer;
     }
@@ -38,12 +38,12 @@
 </head>
 <body>
 
-<h1>JANKER AI</h1>
+<h1>Jankler AI</h1>
 <p>The chaos has logged in...</p>
 
 <div id="chatbox"></div>
 
-<input type="text" id="userInput" placeholder="Speak to Janker...">
+<input type="text" id="userInput" placeholder="Speak to Jankler...">
 <button onclick="sendMessage()">Send</button>
 
 <script>
@@ -59,7 +59,7 @@ function sendMessage() {
   chaosLevel++;
 
   let response = getResponse(input);
-  chatbox.innerHTML += "<p><b>Janker:</b> " + response + "</p>";
+  chatbox.innerHTML += "<p><b>Jankler:</b> " + response + "</p>";
 
   document.getElementById("userInput").value = "";
   chatbox.scrollTop = chatbox.scrollHeight;
@@ -68,22 +68,51 @@ function sendMessage() {
 function getResponse(message) {
   message = message.toLowerCase();
 
-  if (message.includes("hello")) return "Oh good... another test subject.";
-  if (message.includes("who are you")) return "I am the glitch in your browser.";
-  if (message.includes("batman")) return "We do not speak that name.";
-  if (message.includes("janker")) return "HAHAHAHA.";
+  // Specific triggers
+  if (message.includes("hello")) return "Hello, beautiful chaos! Have you come to play?";
+  if (message.includes("who are you")) return "Who am I? Oh, just your worst nightmare in a smile!";
+  if (message.includes("batman")) return "Batsy... always lurking. Pathetic, really.";
+  if (message.includes("jankler")) return "HAHAHAHA! You called me?! You fool.";
+  if (message.includes("Harley Quinn")) return "That reminds me! HAHA!";
+  if (message.includes("Schwoz")) return "This mainframe is not hackable.";
+  if (message.includes("Captain Man")) return "Thats why you have a Jank! HAHAHAHAHA!";
+  if (message.includes("Scars")) return "Do you wanna know how i got these scars?";
+  if (message.includes("Beans")) return "Jankler Beans.";
+  if (message.includes("cold3274")) return "That bitch";\
+  if (message.includes("liam")) return "That bitch";
 
+  // Joker-style chaotic responses
   const responses = [
-    "Interesting...",
-    "The chaos grows.",
-    "Tell me more.",
-    "You cannot escape this tab.",
-    "Society coded me.",
-    "HAHAHAHAHAHA"
+    "Do you like pain? I *love* it!",
+    "Hahaha! That was hilarious, or was it tragic?",
+    "Oh, come on! You can't be serious!",
+    "Why so serious? Let’s put a smile on that face!",
+    "This is my playground, and you’re my toy!",
+    "Madness is like gravity — all it takes is a little push.",
+    "You think you’re in control? Cute.",
+    "I dance on chaos... care to join me?",
+    "Your fear is delicious!",
+    "Life’s a joke, and I’m the punchline!",
+    "Hahaha... and you wonder why I laugh?",
+    "Smile, because the joke’s on you!",
+    "Creepy? Maybe. Funny? Always!",
+    "Ohhhh, you *really* shouldn’t have said that!",
+    "Time to turn this day upside down!"
   ];
 
+  // Chaos effect: after some messages, Joker gets wilder
   if (chaosLevel > 5) {
-    return "The chaos level is rising... I like it.";
+    const chaosResponses = [
+      "HAHAHAHA! Yes! Yes! YES!",
+      "The fun is just beginning!",
+      "I could do this forever, you know!",
+      "The walls are laughing with me!",
+      "Hahaha! I *am* the chaos!",
+      "Why stop the party now?"
+    ];
+    if (Math.random() > 0.5) {
+      return chaosResponses[Math.floor(Math.random() * chaosResponses.length)];
+    }
   }
 
   return responses[Math.floor(Math.random() * responses.length)];
@@ -92,3 +121,4 @@ function getResponse(message) {
 
 </body>
 </html>
+
