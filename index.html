@@ -40,6 +40,12 @@
     p {
       margin: 5px 0;
     }
+
+    #explosion {
+      display: none;
+      width: 200px;
+      margin: 20px auto;
+    }
   </style>
 </head>
 <body>
@@ -51,6 +57,8 @@
 
 <input type="text" id="userInput" placeholder="Speak to Jankler...">
 <button onclick="sendMessage()">Send</button>
+
+<img id="explosion" src="https://media.giphy.com/media/3o7aD4hJkwyyFzyXaM/giphy.gif" style="display: none; width: 200px; margin: 20px auto;">
 
 <script>
 let chaosLevel = 0;
@@ -71,10 +79,41 @@ function sendMessage() {
   chaosLevel++;
 
   let response = getResponse(input);
+
+  // Check for "do something funny" to trigger the explosion GIF
+  if (input.toLowerCase() === "do something funny") {
+    showExplosion();
+    response = "BOOM! Did you like that?";
+  }
+
+  // Check for "lights on" and "lights off" to toggle background color
+  if (input.toLowerCase() === "lights on") {
+    document.body.style.backgroundColor = "white";
+    document.body.style.color = "black"; // Change text color to make it visible on white
+    response = "The lights are on! Let there be light!";
+  }
+
+  if (input.toLowerCase() === "lights off") {
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "purple"; // Keep the text color consistent with the dark theme
+    response = "The lights are off! Back to darkness!";
+  }
+
   chatbox.innerHTML += "<p><b>Jankler:</b> " + response + "</p>";
 
   document.getElementById("userInput").value = "";
   chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+function showExplosion() {
+  // Show the explosion GIF
+  let explosion = document.getElementById("explosion");
+  explosion.style.display = "block";
+
+  // Hide the explosion after 3 seconds
+  setTimeout(() => {
+    explosion.style.display = "none";
+  }, 3000); // 3000ms = 3 seconds
 }
 
 function getResponse(message) {
@@ -85,7 +124,7 @@ function getResponse(message) {
   if (message.includes("who are you")) return "Who am I? Oh, just your worst nightmare in a smile!";
   if (message.includes("batman")) return "Batsy... always lurking. Pathetic, really.";
   if (message.includes("jankler")) return "HAHAHAHA! You called me?! You fool.";
-  if (message.includes("harley quinn")) return "That taste good";
+  if (message.includes("harley quinn")) return "That reminds me! HAHA!";
   if (message.includes("schwoz")) return "This mainframe is not hackable.";
   if (message.includes("captain man")) return "That's why you have a Jank! HAHAHAHAHA!";
   if (message.includes("scars")) return "Do you wanna know how I got these scars?";
@@ -98,21 +137,10 @@ function getResponse(message) {
   if (message.includes("i am normal")) return "Whatever";
   if (message.includes("subspace")) return "Gross";
   if (message.includes("johnathang")) return "Ugh, the one man even im not crazy enough to talk about.";
-  if (message.includes("gru")) return "Ahh, bobbys right hand man! Of course, a tragedy what happened to him. It made a perfect comedy!";
+  if (message.includes("gru")) return "Ahh, bobbys right hand man! Of course, a tragidy what happened to him. It made a perfect comedy!";
   if (message.includes("medkit")) return "We dont like femboys where im from, or anywhere!";
   if (message.includes("67")) return "HAHAHAHAHAHAHAHAHAHAH, I got it.. The Bats weakness. Of course!";
   if (message.includes("lenen beast")) return "Lenen beast? I haven't heard that name in a while. He was not the best man let me tell you that. Hah, always so cheery. Until Mr. Beast said he wasnt cool, all lenen wanted to do was help. Such a shame what he did to Gru after that.";
-  if (message.includes("pedroptray")) return "Ugh, that kid.";
-  if (message.includes("jeffrey epstein")) return "A little birdie told me Batman *was* on the island!";
-  if (message.includes("bigg spades")) return "Love his music, and his body.. HAHAHAHA";
-  if (message.includes("Charlie Kirk")) return "Good thing my guys got him good.";
-  if (message.includes("9/11")) return "HAhaha! I *am* the chaos!";
-  if (message.includes("jamaal gamble")) return "Gotta love him!";
-  if (message.includes("absi")) return "Gross, that guy only loves that Kendall chick and always sings about chunky. He called me the Jonkler.";
-  if (message.includes("jonkler")) return "Life provoked. Room filling with laughing gas.";
-  if (message.includes("joker")) return "Life provoked. Room filling with laughing gas.";
-  if (message.includes("patrick")) return "Patchunky";
-  if (message.includes("patchunky")) return "patrick";
 
   // Joker-style chaotic responses
   const responses = [
@@ -160,7 +188,4 @@ document.getElementById("userInput").addEventListener("keydown", function(e) {
 
 </body>
 </html>
-
-
-
 
