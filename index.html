@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Jankler AI</title>
+  <title>Jankler</title>
   <style>
     body {
       background-color: black;
@@ -18,6 +18,7 @@
       border: 2px solid purple;
       overflow-y: auto;
       padding: 10px;
+      background-color: #000;
     }
 
     input {
@@ -31,14 +32,19 @@
     button {
       padding: 5px;
       background: purple;
+      color: black;
       border: none;
       cursor: pointer;
+    }
+
+    p {
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
 
-<h1>Jankler AI</h1>
+<h1>Jankler</h1>
 <p>The chaos has logged in...</p>
 
 <div id="chatbox"></div>
@@ -49,13 +55,19 @@
 <script>
 let chaosLevel = 0;
 
-function sendMessage() {
-  let input = document.getElementById("userInput").value;
-  let chatbox = document.getElementById("chatbox");
+function escapeHTML(str) {
+  return str.replace(/[&<>"']/g, function(m) { 
+    return {'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[m]; 
+  });
+}
 
+function sendMessage() {
+  let input = document.getElementById("userInput").value.trim();
   if (!input) return;
 
-  chatbox.innerHTML += "<p><b>You:</b> " + input + "</p>";
+  let chatbox = document.getElementById("chatbox");
+  chatbox.innerHTML += "<p><b>You:</b> " + escapeHTML(input) + "</p>";
+
   chaosLevel++;
 
   let response = getResponse(input);
@@ -73,17 +85,36 @@ function getResponse(message) {
   if (message.includes("who are you")) return "Who am I? Oh, just your worst nightmare in a smile!";
   if (message.includes("batman")) return "Batsy... always lurking. Pathetic, really.";
   if (message.includes("jankler")) return "HAHAHAHA! You called me?! You fool.";
-  if (message.includes("Harley Quinn")) return "That reminds me! HAHA!";
-  if (message.includes("Schwoz")) return "This mainframe is not hackable.";
-  if (message.includes("Captain Man")) return "Thats why you have a Jank! HAHAHAHAHA!";
-  if (message.includes("Scars")) return "Do you wanna know how i got these scars?";
-  if (message.includes("Beans")) return "Jankler Beans.";
-  if (message.includes("cold3274")) return "That bitch";\
+  if (message.includes("harley quinn")) return "That taste good";
+  if (message.includes("schwoz")) return "This mainframe is not hackable.";
+  if (message.includes("captain man")) return "That's why you have a Jank! HAHAHAHAHA!";
+  if (message.includes("scars")) return "Do you wanna know how I got these scars?";
+  if (message.includes("beans")) return "Jankler Beans.";
+  if (message.includes("cold3274")) return "That bitch";
+  if (message.includes("badonkadonk")) return "Okay, okay, you had your fun.";
   if (message.includes("liam")) return "That bitch";
+  if (message.includes("?")) return "I'm not in the mood to answer any questions.";
+  if (message.includes("!")) return "Stop yelling at me dad! HAHAHAHAHA!.";
+  if (message.includes("i am normal")) return "Whatever";
+  if (message.includes("subspace")) return "Gross";
+  if (message.includes("johnathang")) return "Ugh, the one man even im not crazy enough to talk about.";
+  if (message.includes("gru")) return "Ahh, bobbys right hand man! Of course, a tragedy what happened to him. It made a perfect comedy!";
+  if (message.includes("medkit")) return "We dont like femboys where im from, or anywhere!";
+  if (message.includes("67")) return "HAHAHAHAHAHAHAHAHAHAH, I got it.. The Bats weakness. Of course!";
+  if (message.includes("lenen beast")) return "Lenen beast? I haven't heard that name in a while. He was not the best man let me tell you that. Hah, always so cheery. Until Mr. Beast said he wasnt cool, all lenen wanted to do was help. Such a shame what he did to Gru after that.";
+  if (message.includes("pedroptray")) return "Ugh, that kid.";
+  if (message.includes("jeffery epstein")) return "A little birdie told me Batman *was* on the island!";
+  if (message.includes("jamaal gamble")) return "Gotta love him!";
+  if (message.includes("absi")) return "Gross, that guy only loves that Kendall chick and always sings about chunky. He called me the Jonkler.";
+  if (message.includes("jonkler")) return "Life provoked. Room filling with laughing gas.";
+  if (message.includes("joker")) return "Life provoked. Room filling with laughing gas.";
+  if (message.includes("patrick")) return "Patchunky";
+  if (message.includes("patchunky")) return "patrick";
 
   // Joker-style chaotic responses
   const responses = [
     "Do you like pain? I *love* it!",
+    "Yeah",
     "Hahaha! That was hilarious, or was it tragic?",
     "Oh, come on! You can't be serious!",
     "Why so serious? Let’s put a smile on that face!",
@@ -117,8 +148,15 @@ function getResponse(message) {
 
   return responses[Math.floor(Math.random() * responses.length)];
 }
+
+// Support pressing Enter to send
+document.getElementById("userInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") sendMessage();
+});
 </script>
 
 </body>
 </html>
+
+
 
